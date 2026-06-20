@@ -5,10 +5,10 @@ import pandas as pd
 import numpy as np
 
 app = Flask(__name__)
-model = load_model("Obesity Predictor/obesity_ann_model.keras")
-scaler = joblib.load("Obesity Predictor/obesity_scaler.pkl")
-feature_encoders = joblib.load("Obesity Predictor/feature_encoders.pkl")
-target_encoder = joblib.load("Obesity Predictor/target_encoder.pkl")
+model = load_model("obesity_ann_model.keras")
+scaler = joblib.load("obesity_scaler.pkl")
+feature_encoders = joblib.load("feature_encoders.pkl")
+target_encoder = joblib.load("target_encoder.pkl")
 
 
 feature_columns = [
