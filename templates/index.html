@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obesity Prediction System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+
+    <!-- Header -->
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                <i class="fa-solid fa-heart-pulse"></i>
+                AI Healthcare Assistant
+            </div>
+
+            <h1>Obesity Prediction System</h1>
+
+            <p>
+                Predict obesity levels using Artificial Neural Networks
+                and health-related lifestyle parameters.
+            </p>
+
+        </div>
+
+    </header>
+
+    <!-- Main Container -->
+    <main class="container">
+
+        <!-- Form Card -->
+        <section class="glass-card form-card">
+
+            <div class="section-title">
+                <i class="fa-solid fa-user-doctor"></i>
+                <h2>Health Assessment Form</h2>
+            </div>
+
+            <form id="predictionForm">
+
+                <!-- Personal Information -->
+                <div class="category">
+
+                    <h3>
+                        <i class="fa-solid fa-user"></i>
+                        Personal Information
+                    </h3>
+
+                    <div class="grid">
+
+                        <div class="input-group">
+                            <label>Age</label>
+                            <input type="number"
+                                   name="Age"
+                                   min="1"
+                                   required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Gender</label>
+
+                            <select name="Gender" required>
+                                <option value="">Select</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Height (m)</label>
+
+                            <input type="number"
+                                   step="0.01"
+                                   name="Height"
+                                   placeholder="1.75"
+                                   required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Weight (kg)</label>
+
+                            <input type="number"
+                                   step="0.1"
+                                   name="Weight"
+                                   placeholder="70"
+                                   required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Family History of Overweight</label>
+
+                            <select name="family_history_with_overweight" required>
+                                <option value="">Select</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Eating Habits -->
+                <div class="category">
+
+                    <h3>
+                        <i class="fa-solid fa-utensils"></i>
+                        Eating Habits
+                    </h3>
+
+                    <div class="grid">
+
+                        <div class="input-group">
+                            <label>High Calorie Food (FAVC)</label>
+
+                            <select name="FAVC" required>
+                                <option value="">Select</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label>
+                                Vegetable Consumption (FCVC)
+                                <button type="button"
+                                        class="info-btn"
+                                        data-info="fcvc">ℹ</button>
+                            </label>
+
+                            <select name="FCVC" required>
+                                <option value="">Select</option>
+                                <option value="1">Low</option>
+                                <option value="2">Moderate</option>
+                                <option value="3">High</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label>
+                                Number of Main Meals (NCP)
+                                <button type="button"
+                                        class="info-btn"
+                                        data-info="ncp">ℹ</button>
+                            </label>
+
+                            <input type="number"
+                                   step="0.1"
+                                   min="1"
+                                   max="5"
+                                   name="NCP"
+                                   placeholder="3"
+                                   required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Food Between Meals (CAEC)</label>
+
+                            <select name="CAEC" required>
+                                <option value="">Select</option>
+                                <option value="no">No</option>
+                                <option value="Sometimes">Sometimes</option>
+                                <option value="Frequently">Frequently</option>
+                                <option value="Always">Always</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label>
+                                Water Intake (CH2O)
+                                <button type="button"
+                                        class="info-btn"
+                                        data-info="ch2o">ℹ</button>
+                            </label>
+
+                            <select name="CH2O" required>
+                                <option value="">Select</option>
+                                <option value="1">Low</option>
+                                <option value="2">Moderate</option>
+                                <option value="3">High</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Alcohol Consumption (CALC)</label>
+
+                            <select name="CALC" required>
+                                <option value="">Select</option>
+                                <option value="no">No</option>
+                                <option value="Sometimes">Sometimes</option>
+                                <option value="Frequently">Frequently</option>
+                                <option value="Always">Always</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Lifestyle -->
+                <div class="category">
+
+                    <h3>
+                        <i class="fa-solid fa-heart"></i>
+                        Lifestyle
+                    </h3>
+
+                    <div class="grid">
+
+                        <div class="input-group">
+                            <label>Smoking</label>
+
+                            <select name="SMOKE" required>
+                                <option value="">Select</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Calories Monitoring (SCC)</label>
+
+                            <select name="SCC" required>
+                                <option value="">Select</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label>
+                                Technology Usage (TUE)
+                                <button type="button"
+                                        class="info-btn"
+                                        data-info="tue">ℹ</button>
+                            </label>
+
+                            <select name="TUE" required>
+                                <option value="">Select</option>
+                                <option value="0">Low</option>
+                                <option value="1">Moderate</option>
+                                <option value="2">High</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Transportation</label>
+
+                            <select name="MTRANS" required>
+                                <option value="">Select</option>
+                                <option value="Automobile">Automobile</option>
+                                <option value="Bike">Bike</option>
+                                <option value="Motorbike">Motorbike</option>
+                                <option value="Public_Transportation">
+                                    Public Transportation
+                                </option>
+                                <option value="Walking">Walking</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Physical Activity -->
+                <div class="category">
+
+                    <h3>
+                        <i class="fa-solid fa-dumbbell"></i>
+                        Physical Activity
+                    </h3>
+
+                    <div class="grid">
+
+                        <div class="input-group">
+
+                            <label>
+                                Physical Activity Frequency (FAF)
+
+                                <button type="button"
+                                        class="info-btn"
+                                        data-info="faf">ℹ</button>
+
+                            </label>
+
+                            <select name="FAF" required>
+                                <option value="">Select</option>
+                                <option value="0">Never</option>
+                                <option value="1">Sometimes</option>
+                                <option value="2">Regularly</option>
+                                <option value="3">Very Active</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Submit Button -->
+
+                <button type="submit"
+                        id="predictBtn"
+                        class="predict-btn">
+
+                    <span id="btnText">
+                        Predict Health Status
+                    </span>
+
+                    <span id="loader"
+                          class="loader hidden">
+                    </span>
+
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- Result Card -->
+
+        <section id="resultCard"
+                 class="glass-card result-card hidden">
+
+            <div class="result-header">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <h2>Prediction Result</h2>
+
+            </div>
+
+            <div class="prediction-result">
+
+                <h3 id="predictionText">
+                    --
+                </h3>
+
+                <div id="statusBadge"
+                     class="status-badge">
+                    --
+                </div>
+
+                <div class="confidence-section">
+
+                    <div class="confidence-header">
+
+                        <span>Confidence</span>
+
+                        <span id="confidenceValue">
+                            0%
+                        </span>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div id="confidenceBar"
+                             class="progress-fill">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Info Modal -->
+
+    <div id="infoModal"
+         class="modal">
+
+        <div class="modal-content">
+
+            <span class="close-modal">
+                &times;
+            </span>
+
+            <h2 id="modalTitle"></h2>
+
+            <p id="modalDescription"></p>
+
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
