@@ -3,12 +3,15 @@ from tensorflow.keras.models import load_model
 import joblib
 import pandas as pd
 import numpy as np
-
+import os
 app = Flask(__name__)
-model = load_model("obesity_ann_model.keras")
-scaler = joblib.load("obesity_scaler.pkl")
-feature_encoders = joblib.load("feature_encoders.pkl")
-target_encoder = joblib.load("target_encoder.pkl")
+
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+model = load_model(os.path.join(BASE_DIR, "obesity_ann_model.keras"))
+scaler = joblib.load(os.path.join(BASE_DIR, "obesity_scaler.pkl"))
+feature_encoders = joblib.load(os.path.join(BASE_DIR, "feature_encoders.pkl"))
+target_encoder = joblib.load(os.path.join(BASE_DIR, "target_encoder.pkl"))
 
 
 feature_columns = [
